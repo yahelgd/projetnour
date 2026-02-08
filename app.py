@@ -83,18 +83,36 @@ elif st.session_state.etape == 3:
 
 # --- ÉTAPE 4 : Le Bouquet & Google Form ---
 elif st.session_state.etape == 4:
-    st.markdown('<style>.stApp { background-color: #FF69B4; }</style>', unsafe_allow_html=True)
+    # Modification du style pour le fond blanc et texte sombre
+    st.markdown("""
+        <style>
+        .stApp { 
+            background-color: white !important; 
+        }
+        h1, h2, h3, p, span { 
+            color: #D00000 !important; /* Rouge foncé pour le contraste sur blanc */
+            text-align: center; 
+            font-family: 'Verdana'; 
+        }
+        .stButton>button { 
+            background-color: #FF1493; 
+            color: white; 
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
     st.write("# 💐 UNE DERNIÈRE CHOSE...")
+
     st.write("### Je veux te faire livrer un bouquet de")
     st.write("### fleurs pour la Saint-Valentin !")
+
     st.write("### Écris-moi ton adresse mon amour")
-    st.write("## Je t'aime ❤️")
 
-    st.write("---")
-    st.write("### Une nouvelle page va s'ouvrir pour noter ton adresse.")
+    st.write("## **Je t'aime ❤️**")
 
-    # Lien Google Form (Clignotant ou Gros bouton)
+    st.write("---")  # Ligne de séparation
+
+    # Lien Google Form (Gros bouton)
     url = "https://docs.google.com/forms/d/e/1FAIpQLScSGrAa8EZd9m0_F9v3Bcb8un_rlq0vI6gnAHApRJf_TspBhg/viewform?usp=sf_link"
 
-    st.link_button("👉 CLIQUER ICI POUR MON ADRESSE 👈", url)
+    st.link_button("👉 CLIQUER ICI BABE", url)
