@@ -101,10 +101,10 @@ elif st.session_state.etape == 4:
         </style>
         """, unsafe_allow_html=True)
 
-    st.write("# 💐 UNE DERNIÈRE CHOSE...")
+    st.write("#  UNE DERNIÈRE CHOSE...")
 
-    st.write("### Je veux te faire livrer un bouquet de")
-    st.write("### fleurs pour la Saint-Valentin !")
+    st.write("### Je veux te faire livrer un petit")
+    st.write("### geste pour la Saint-Valentin !")
 
     st.write("### Écris-moi ton adresse mon amour")
 
