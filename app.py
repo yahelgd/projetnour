@@ -71,7 +71,7 @@ elif st.session_state.etape == 2:
     
     st.markdown('<div class="photo-frame">', unsafe_allow_html=True)
     try:
-        st.image("photo1.jpg", use_container_width=True)
+        st.image("photo 1.jpeg", use_container_width=True)
     except:
         st.info("📸 (Ajoute 'photo1.jpg' ici)")
     st.markdown('</div>', unsafe_allow_html=True)
@@ -94,7 +94,7 @@ elif st.session_state.etape == 3:
     
     st.markdown('<div class="photo-frame">', unsafe_allow_html=True)
     try:
-        st.image("photo2.jpg", use_container_width=True)
+        st.image("photo2.jpeg", use_container_width=True)
     except:
         st.info("📸 (Ajoute 'photo2.jpg' ici)")
     st.markdown('</div>', unsafe_allow_html=True)
@@ -118,7 +118,7 @@ elif st.session_state.etape == 4:
     
     st.markdown('<div class="photo-frame">', unsafe_allow_html=True)
     try:
-        st.image("photo3.jpg", use_container_width=True)
+        st.image("photo3.jpeg", use_container_width=True)
     except:
         st.info("📸 (Ajoute 'photo3.jpg' ici)")
     st.markdown('</div>', unsafe_allow_html=True)
@@ -144,11 +144,12 @@ elif st.session_state.etape == 5:
     try:
         st.image("photo4.jpg", use_container_width=True)
     except:
-        st.info("📸 (Ajoute 'photo4.jpg' ici)")
+        st.info("📸 (Ajoute 'photo4.jpeg' ici)")
     st.markdown('</div>', unsafe_allow_html=True)
 
     st.write("### Je t'aime plus que tout. ❤️")
     
     if st.button("Revoir depuis le début 🔄"):
         st.session_state.etape = 1
+
         st.rerun()
