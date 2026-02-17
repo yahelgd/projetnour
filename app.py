@@ -1,118 +1,154 @@
 import streamlit as st
-import time
 
 # Configuration de la page
 st.set_page_config(page_title="Pour Nour ❤️", page_icon="🌹", layout="centered")
 
-# CSS pour le look "Yahya & Nour"
+# --- STYLE CSS PERSONNALISÉ ---
 st.markdown("""
     <style>
     .stApp { background-color: #1a1a1a; }
     h1, h2, h3, p, span { color: #FF69B4 !important; text-align: center; font-family: 'Verdana'; }
     .stButton>button { 
         background-color: #FF1493; color: white; border-radius: 20px; 
-        width: 100%; border: none; padding: 10px;
+        width: 100%; border: none; padding: 10px; font-weight: bold;
     }
     input { background-color: #2b2b2b !important; color: white !important; border: 1px solid #FF69B4 !important; }
+    
+    .declaration-box {
+        padding: 25px; 
+        border-left: 5px solid #FF1493; 
+        background-color: #2b2b2b; 
+        border-radius: 15px; 
+        margin-bottom: 20px;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    }
+    .declaration-text {
+        font-size: 20px; 
+        font-style: italic; 
+        line-height: 1.6; 
+        color: white !important;
+    }
+    .photo-frame {
+        border: 2px solid #FF69B4; 
+        padding: 10px; 
+        border-radius: 15px;
+        background-color: #000;
+    }
     </style>
     """, unsafe_allow_html=True)
 
-# Initialisation de l'état
+# Initialisation de la mémoire
 if 'etape' not in st.session_state:
     st.session_state.etape = 1
 
-# --- ÉTAPE 1 : Identification ---
+# --- ÉTAPE 1 : IDENTIFICATION ---
 if st.session_state.etape == 1:
     st.write("# 🌹 Identification")
-    prenom = st.text_input("Bonjour... Quel est ton prénom ?", key="name")
+    st.write("### Je dois vérifier que c'est bien toi...")
+    prenom = st.text_input("Quel est ton prénom ?", key="name_input")
+    
     if prenom:
-        if st.button("Continuer"):
-            st.session_state.prenom = prenom
-            st.session_state.etape = 2
-            st.rerun()
+        if prenom.lower() == "nour":
+            st.success("Accès autorisé... ❤️")
+            if st.button("Découvrir mon message"):
+                st.session_state.etape = 2
+                st.rerun()
+        else:
+            st.error("Désolé, ce message n'est pas pour toi... 🥀")
 
-# --- ÉTAPE 2 : Anniversaire ---
+# --- ÉTAPE 2 : PAGE 1 ---
 elif st.session_state.etape == 2:
-    st.write(f"# 🔐 Accès sécurisé pour {st.session_state.prenom}")
-    date = st.text_input("Entre ma date d'anniversaire (JJ MM AAAA) :", key="date")
-    if date == "14 04 2004":
-        st.success("Accès autorisé. Prépare-toi Nour... ❤️")
-        if st.button("Découvrir ma surprise"):
-            st.session_state.etape = 3
-            st.rerun()
-    elif date != "":
-        st.error("Code incorrect... réessaie ❤️")
+    st.write("# Pour toi, Nour... ❤️")
+    st.markdown("""
+        <div class="declaration-box">
+            <p class="declaration-text">
+                "Nour, tu es la femme de ma vie. Tu es radieuse et tu illumines ma vie avec ton énergie et ta bonne humeur. 
+                Quant à ta tendresse, elle adoucit mon cœur.<br><br>
+                <b>Pour moi, tu es un cadeau de Dieu et la raison pour laquelle je souhaite devenir un homme meilleur.</b>"
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown('<div class="photo-frame">', unsafe_allow_html=True)
+    try:
+        st.image("photo1.jpg", use_container_width=True)
+    except:
+        st.info("📸 (Ajoute 'photo1.jpg' ici)")
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# --- ÉTAPE 3 : Karaoké, Déclaration et Photo ---
+    if st.button("Continuer... ✨"):
+        st.session_state.etape = 3
+        st.rerun()
+
+# --- ÉTAPE 3 : PAGE 2 ---
 elif st.session_state.etape == 3:
-    st.balloons()
+    st.write("# Mon pilier... ✨")
+    st.markdown("""
+        <div class="declaration-box">
+            <p class="declaration-text">
+                "Tu m'as apporté réconfort et tendresse pendant mes nuits de doute et de tristesse.<br><br>
+                Tu as transformé mon manque de confiance en assurance. Tes belles paroles m'illuminent et me relèvent de mon lit de malheur."
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown('<div class="photo-frame">', unsafe_allow_html=True)
+    try:
+        st.image("photo2.jpg", use_container_width=True)
+    except:
+        st.info("📸 (Ajoute 'photo2.jpg' ici)")
+    st.markdown('</div>', unsafe_allow_html=True)
 
-
-    # Paroles Karaoké
-    paroles = ["I love you, baby,", "And if it's quite alright,", "I need you, baby,", "To warm a lonely night."]
-    for p in paroles:
-        st.write(f"### *{p}*")
-        time.sleep(1.2)
-
-    st.write("---")
-
-    # Ta Déclaration
-    st.write("## Nour tu es la femme de ma vie,")
-    st.write("## ta présence m‘apaise et me rend plus fort.")
-    st.write("## Je serai toujours à tes côtés")
-    st.write("## pour le meilleur et pour le pire.")
-    st.write("### **Yahya qui t’aime.**")
-
-    st.write("---")
-
-    # Affichage Photo (Fond blanc simulé par un container)
-    with st.container():
-        st.markdown('<div style="background-color: white; padding: 20px; border-radius: 10px;">',
-                    unsafe_allow_html=True)
-        try:
-            st.image("photo.jpg", use_container_width=True)  # Streamlit utilise .jpg ou .png plus facilement que .gif
-        except:
-            st.write("📸 (Ta photo ici)")
-        st.markdown('</div>', unsafe_allow_html=True)
-
-    time.sleep(2)
-
-    if st.button("Continuer ❤️"):
+    if st.button("La suite... ❤️"):
         st.session_state.etape = 4
         st.rerun()
 
-# --- ÉTAPE 4 : Le Bouquet & Google Form ---
+# --- ÉTAPE 4 : PAGE 3 ---
 elif st.session_state.etape == 4:
-    # Modification du style pour le fond blanc et texte sombre
+    st.write("# Un nouveau voyage... 🚀")
     st.markdown("""
-        <style>
-        .stApp { 
-            background-color: white !important; 
-        }
-        h1, h2, h3, p, span { 
-            color: #D00000 !important; /* Rouge foncé pour le contraste sur blanc */
-            text-align: center; 
-            font-family: 'Verdana'; 
-        }
-        .stButton>button { 
-            background-color: #FF1493; 
-            color: white; 
-        }
-        </style>
-        """, unsafe_allow_html=True)
+        <div class="declaration-box">
+            <p class="declaration-text">
+                "Tu es celle qui a brisé la routine qui me détruisait. <br><br>
+                Regarder tes yeux est pour moi synonyme de voyage au milieu des étoiles.<br><br>
+                <b>Avec toi, j'ai enlevé la barrière, le rétro et la marche arrière.</b>"
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown('<div class="photo-frame">', unsafe_allow_html=True)
+    try:
+        st.image("photo3.jpg", use_container_width=True)
+    except:
+        st.info("📸 (Ajoute 'photo3.jpg' ici)")
+    st.markdown('</div>', unsafe_allow_html=True)
 
-    st.write("#  UNE DERNIÈRE CHOSE...")
+    if st.button("Presque fini... ✨"):
+        st.session_state.etape = 5
+        st.rerun()
 
-    st.write("### Je veux te faire livrer un petit")
-    st.write("### geste pour la Saint-Valentin !")
+# --- ÉTAPE 5 : PAGE 4 (FINAL) ---
+elif st.session_state.etape == 5:
+    st.write("# Mon serment pour l'éternité... ♾️")
+    st.markdown("""
+        <div class="declaration-box" style="box-shadow: 0px 0px 20px #FF1493; border-left: none; border: 2px solid #FF1493;">
+            <p class="declaration-text" style="text-align: center;">
+                "J'ai juré devant Dieu que je t'apporterai amour, fidélité et protection malgré les vagues et les flots de la vie.<br><br>
+                Tu es ma femme et la flamme qui réchauffe mon cœur qui était refroidi par la dureté de l'existence.<br><br>
+                <b>Reste avec moi mon amour et nous écrirons un livre que nous lirons ensemble à la fin de nos jours.</b>"
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown('<div class="photo-frame">', unsafe_allow_html=True)
+    try:
+        st.image("photo4.jpg", use_container_width=True)
+    except:
+        st.info("📸 (Ajoute 'photo4.jpg' ici)")
+    st.markdown('</div>', unsafe_allow_html=True)
 
-    st.write("### Écris-moi ton adresse mon amour")
-
-    st.write("## **Je t'aime ❤️**")
-
-    st.write("---")  # Ligne de séparation
-
-    # Lien Google Form (Gros bouton)
-    url = "https://docs.google.com/forms/d/e/1FAIpQLScSGrAa8EZd9m0_F9v3Bcb8un_rlq0vI6gnAHApRJf_TspBhg/viewform?usp=sf_link"
-
-    st.link_button("👉 CLIQUER ICI BABE", url)
+    st.write("### Je t'aime plus que tout. ❤️")
+    
+    if st.button("Revoir depuis le début 🔄"):
+        st.session_state.etape = 1
+        st.rerun()
