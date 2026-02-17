@@ -142,14 +142,13 @@ elif st.session_state.etape == 5:
     
     st.markdown('<div class="photo-frame">', unsafe_allow_html=True)
     try:
-        st.image("photo4.jpg", use_container_width=True)
+        st.image("photo4.jpeg", use_container_width=True)
     except:
-        st.info("📸 (Ajoute 'photo4.jpeg' ici)")
+        st.info("📸 (Ajoute 'photo4.jpg' ici)")
     st.markdown('</div>', unsafe_allow_html=True)
 
     st.write("### Je t'aime plus que tout. ❤️")
     
     if st.button("Revoir depuis le début 🔄"):
         st.session_state.etape = 1
-
         st.rerun()
